@@ -3,5 +3,5 @@
   <MainPackage Name="SingletonSean.ContinuousDeployment" Publisher="CN=SingletonSean" Version="2.0.1.0" ProcessorArchitecture="x64" Uri="https://github.com/SingletonSean/maui-tutorials/releases/latest/download/AutoUpdate.msix" />
   <UpdateSettings>
     <OnLaunch HoursBetweenUpdateChecks="0" />
-  </UpdateSettings>
+  </UpdateSettings> 
 </AppInstaller>
