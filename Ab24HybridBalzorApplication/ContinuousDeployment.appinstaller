@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AppInstaller xmlns="http://schemas.microsoft.com/appx/appinstaller/2018" Version="1.0.0.0" Uri="https://github.com/Accountbook24/Ab24HybridBalzorApplication/releases/latest/download/ContinuousDeployment.appinstaller">
-	<MainPackage Name="B898A2BC-5FFB-403D-AF0E-826A9456C7BB" Publisher="CN=PREMIUM" Version="1.9.11.0" ProcessorArchitecture="x64" Uri="https://github.com/Accountbook24/Ab24HybridBalzorApplication/releases/latest/download/AutoUpdate.msix" />
+	<MainPackage Name="B898A2BC-5FFB-403D-AF0E-826A9456C7BB" Publisher="CN=PREMIUM" Version="1.9.12.0" ProcessorArchitecture="x64" Uri="https://github.com/Accountbook24/Ab24HybridBalzorApplication/releases/latest/download/AutoUpdate.msix" />
   <UpdateSettings>
     <OnLaunch HoursBetweenUpdateChecks="0" />
   </UpdateSettings> 
