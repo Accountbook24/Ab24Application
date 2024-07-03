@@ -16,11 +16,11 @@
         <ApplicationTitle>AccountBook24</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.companyname.AccountBook24</ApplicationId>
+        <ApplicationId>MauiApp.AccountBook24</ApplicationId>
         <ApplicationIdGuid>B898A2BC-5FFB-403D-AF0E-826A9456C7BB</ApplicationIdGuid>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>1.9.6</ApplicationDisplayVersion>
+        <ApplicationDisplayVersion>1.9.7</ApplicationDisplayVersion>
         <ApplicationVersion>1</ApplicationVersion> 
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
