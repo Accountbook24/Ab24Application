@@ -37,7 +37,7 @@ jobs:
         echo "${{ secrets.SIGNING_CERTIFICATE_BASE_64_CONTENT }}" > cert.asc
         certutil -decode cert.asc cert.pfx
 
-    - name: Install Signing Certficiate
+    - name: Install Signing Certificate
       run: certutil -user -p ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }} -Silent -importpfx cert.pfx NoRoot
 
     - name: Publish
@@ -54,9 +54,10 @@ jobs:
 
     - name: Check if Tag Exists
       id: check_tag
+      shell: pwsh
       run: |
-        TAG_EXISTS=$(git ls-remote --tags origin refs/tags/v${{ steps.extractVersion.outputs.version }} | wc -l)
-        echo "exists=$TAG_EXISTS" >> $GITHUB_ENV
+        $tag = git ls-remote --tags origin refs/tags/v${{ steps.extractVersion.outputs.version }} | Measure-Object -Line
+        echo "exists=$($tag.Lines)" >> $env:GITHUB_ENV
 
     - name: Create Tag
       if: env.exists == '0'
@@ -73,17 +74,17 @@ jobs:
 
     - name: Rename Auto-Update Installer
       shell: pwsh
-      run: Rename-Item ./Ab24HybridBalzorApplication/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_Test/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_x64.msix AutoUpdate.msix
+      run: Rename-Item ./Ab24HybridBalzorApplication/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_Test/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_x64.msix AutoUpdate.msix
 
     - name: Rename Certificate
       shell: pwsh
-      run: Rename-Item ./Ab24HybridBalzorApplication/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_Test/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_x64.cer ContinuousDeployment.cer
+      run: Rename-Item ./Ab24HybridBalzorApplication/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_Test/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_x64.cer ContinuousDeployment.cer
 
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: v${{ steps.extractVersion.outputs.version }}
+        tag_name: v${{ steps.extractVersion.outputs.version }}
         files: | 
           ./Ab24HybridBalzorApplication/ContinuousDeployment.appinstaller
-          ./Ab24HybridBalzorApplication/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_Test/AutoUpdate.msix
-          ./Ab24HybridBalzorApplication/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_Test/ContinuousDeployment.cer
+          ./Ab24HybridBalzorApplication/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_Test/AutoUpdate.msix
+          ./Ab24HybridBalzorApplication/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/Ab24HybridBalzorApplication_${{ steps.extractVersion.outputs.version }}.0_Test/ContinuousDeployment.cer
