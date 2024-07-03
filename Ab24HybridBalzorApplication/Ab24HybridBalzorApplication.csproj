@@ -20,7 +20,7 @@
         <ApplicationIdGuid>B898A2BC-5FFB-403D-AF0E-826A9456C7BB</ApplicationIdGuid>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>1.6.1</ApplicationDisplayVersion>
+        <ApplicationDisplayVersion>1.9.2</ApplicationDisplayVersion>
         <ApplicationVersion>1</ApplicationVersion>
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
@@ -37,7 +37,7 @@
         <GenerateTestArtifacts>True</GenerateTestArtifacts>
         <AppInstallerUri>https://accountbook24.azurewebsites.net/</AppInstallerUri>
         <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-        <PackageCertificateThumbprint>404CEC65EA5FC02CA5DF5DCD5CFC787AFC2818C1</PackageCertificateThumbprint>
+        <PackageCertificateThumbprint>3F8E998F5866CCAF686AFE3354B58E452E8FA522</PackageCertificateThumbprint>
     </PropertyGroup>
 
     <ItemGroup>
