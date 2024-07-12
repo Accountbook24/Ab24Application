@@ -3,8 +3,6 @@
     <PropertyGroup>
         <TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
         <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
-        <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-        <!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
         <OutputType>Exe</OutputType>
         <RootNamespace>Ab24HybridBalzorApplication</RootNamespace>
         <UseMaui>true</UseMaui>
@@ -16,12 +14,12 @@
         <ApplicationTitle>AccountBook24</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>MauiApp.AccountBook24</ApplicationId>
+        <ApplicationId>com.accountbook24.app</ApplicationId>
         <ApplicationIdGuid>B898A2BC-5FFB-403D-AF0E-826A9456C7BB</ApplicationIdGuid>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>1.9.12.0</ApplicationDisplayVersion>
-        <ApplicationVersion>1</ApplicationVersion> 
+        <ApplicationDisplayVersion>55.0.0.0</ApplicationDisplayVersion>
+        <ApplicationVersion>55</ApplicationVersion> 
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
@@ -39,6 +37,29 @@
         <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
         <PackageCertificateThumbprint>3F8E998F5866CCAF686AFE3354B58E452E8FA522</PackageCertificateThumbprint>
     </PropertyGroup>
+	
+
+	
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+        <AndroidSigningKeyStore>abook.keystore</AndroidSigningKeyStore>
+        <AndroidSigningKeyAlias>Abook</AndroidSigningKeyAlias>
+        <AndroidSigningKeyPass>Techno@Abook24Key</AndroidSigningKeyPass>
+        <AndroidSigningStorePass>Techno@Abook24</AndroidSigningStorePass>
+    </PropertyGroup>
+
+    
+    <!--<PropertyGroup>
+            <SignPropsFile>D:\AB24\MAUIHybridApp\Ab24HybridBalzorApplication\Ab24HybridBalzorApplication\signing.properties</SignPropsFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <AndroidKeyStore>true</AndroidKeyStore>
+        <AndroidSigningKeyStore>$(SignPropsFile)</AndroidSigningKeyStore>
+        <AndroidSigningKeyAlias>Abook</AndroidSigningKeyAlias>
+        <AndroidSigningKeyPass>Techno@Abook24Key</AndroidSigningKeyPass>
+        <AndroidSigningStorePass>Techno@Abook24</AndroidSigningStorePass>
+	    <AndroidSigningKeyStoreType>pkcs12</AndroidSigningKeyStoreType>
+    </PropertyGroup>-->
 
     <ItemGroup>
         <!-- App Icon -->
@@ -59,23 +80,20 @@
     </ItemGroup>
 
     <ItemGroup>
-      <AndroidResource Remove="bin\**" />
-      <Compile Remove="bin\**" />
-      <Content Remove="bin\**" />
-      <EmbeddedResource Remove="bin\**" />
-      <MauiXaml Remove="bin\**" />
-      <None Remove="bin\**" />
+        <AndroidResource Remove="bin\**" />
+        <Compile Remove="bin\**" />
+        <Content Remove="bin\**" />
+        <EmbeddedResource Remove="bin\**" />
+        <MauiXaml Remove="bin\**" />
+        <None Remove="bin\**" />
     </ItemGroup>
 
     <ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
-		<PackageReference Include="EJL.MauiHybridWebView" Version="1.0.0-preview4" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		
-		
-		
-		
-	</ItemGroup>
+        <PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
+        <PackageReference Include="EJL.MauiHybridWebView" Version="1.0.0-preview4" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    </ItemGroup>
+   
 
 </Project>
