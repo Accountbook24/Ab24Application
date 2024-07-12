@@ -48,9 +48,9 @@ jobs:
       id: extractVersion
       shell: pwsh
       run: |
-        $xml = [Xml] (Get-Content ./Ab24HybridBalzorApplication/Ab24HybridBalzorApplication.csproj)
-        [string] $version = [Version] $xml.Project.PropertyGroup.ApplicationDisplayVersion
-        echo "version=$($version)" >> $env:GITHUB_OUTPUT
+        $xml = [xml](Get-Content ./Ab24HybridBalzorApplication/Ab24HybridBalzorApplication.csproj)
+        $version = $xml.Project.PropertyGroup | Where-Object { $_.ApplicationDisplayVersion } | Select-Object -ExpandProperty ApplicationDisplayVersion
+        echo "version=$version" >> $env:GITHUB_OUTPUT
 
     - name: Check if Tag Exists
       id: check_tag
