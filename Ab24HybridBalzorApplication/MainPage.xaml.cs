@@ -2,6 +2,12 @@
 using Microsoft.Maui.Controls.Compatibility;
 using Newtonsoft.Json;
 using static Microsoft.Maui.ApplicationModel.Permissions;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.ApplicationModel;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+
 
 
 namespace Ab24HybridBalzorApplication
@@ -9,9 +15,12 @@ namespace Ab24HybridBalzorApplication
     public partial class MainPage : ContentPage
     {
         static readonly HttpClient client = new HttpClient();
-        public MainPage() 
+        public MainPage()
         {
             InitializeComponent();
+#if DEBUG
+            myHybridWebView.EnableWebDevTools = true;
+#endif
         }
         private async void OnHybridWebViewRawMessageReceived(object sender, HybridWebView.HybridWebViewRawMessageReceivedEventArgs e)
         {
@@ -41,7 +50,7 @@ namespace Ab24HybridBalzorApplication
                                 sourceStream.CopyTo(memoryStream);
                                 string base64 = Convert.ToBase64String(memoryStream.ToArray());
 
-                               // await myHybridWebView.InvokeJsMethodAsync("callBackFilePicked", base64);
+                                await myHybridWebView.InvokeJsMethodAsync("callBackFilePicked", base64);
                             }
 
                         });
@@ -145,9 +154,9 @@ namespace Ab24HybridBalzorApplication
             {
                 Uri uri = new Uri(json["Url"]);
                 await MainThread.InvokeOnMainThreadAsync(async () =>
-                {
-                    await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
-                });
+                    {
+                        await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+                    });
             }
             else if (json["Type"] == "WhatsAppShare")
             {
@@ -162,10 +171,25 @@ namespace Ab24HybridBalzorApplication
                 });
 
             }
+            else if (json["Type"] == "Dialer")
+            {
+                string phoneNumber = json["PhoneNumber"];
 
+                var callPhoneStatus = await PermissionsHelper.CheckAndRequestPermissionAsync<Permissions.Phone>();
+
+                if (callPhoneStatus == PermissionStatus.Granted)
+                {
+                    Uri phoneUri = new Uri($"tel:{phoneNumber}");
+                    await Launcher.OpenAsync(phoneUri);
+                }
+                else
+                {
+                    Console.WriteLine("Required permissions not granted.");
+                }
+            }
         }
 
-        private async Task PrintStream(Stream stream)
+            private async Task PrintStream(Stream stream)
         {
             PrintService printService = new PrintService();
 
@@ -174,7 +198,7 @@ namespace Ab24HybridBalzorApplication
             {
 
 #if WINDOWS
-           await printService.PrintFile(stream, "pdfTestFile.pdf", this.Window.Handler.PlatformView as Microsoft.UI.Xaml.Window);
+                await printService.PrintFile(stream, "pdfTestFile.pdf", this.Window.Handler.PlatformView as Microsoft.UI.Xaml.Window);
 
 #elif __IOS__ || MACCATALYST || ANDROID
                 await printService.PrintFile(stream, "pdfTestFile.pdf", null);

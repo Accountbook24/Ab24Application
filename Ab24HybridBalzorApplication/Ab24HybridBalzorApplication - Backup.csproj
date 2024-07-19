@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <!--<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>-->
-		<TargetFrameworks>net7.0-android;net7.0-windows10.0.19041.0</TargetFrameworks>
-		<OutputType>Exe</OutputType>
+        <TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+        <OutputType>Exe</OutputType>
         <RootNamespace>Ab24HybridBalzorApplication</RootNamespace>
         <UseMaui>true</UseMaui>
         <SingleProject>true</SingleProject>
@@ -94,9 +93,10 @@
         <PackageReference Include="EJL.MauiHybridWebView" Version="1.0.0-preview4" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-
-
-	</ItemGroup>
+        <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.3" />
+        <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.8" />
+        <PackageReference Include="Svg.Skia" Version="1.0.0.18" />
+    </ItemGroup>
    
 
 </Project>

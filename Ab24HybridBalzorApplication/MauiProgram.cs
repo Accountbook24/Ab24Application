@@ -17,14 +17,15 @@ namespace Ab24HybridBalzorApplication
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
 
-            builder.Services.AddMauiBlazorWebView();
+            //builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
+    		//builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.AddHybridWebView();
+            //builder.Services.AddSingleton<WeatherForecastService>();
 
             return builder.Build();
         }
