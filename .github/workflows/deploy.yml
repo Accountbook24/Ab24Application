@@ -25,12 +25,10 @@ jobs:
       run: dotnet workload install maui
 
     - name: Restore
-      run: dotnet restore
-      working-directory: ./Ab24HybridBalzorApplication
+      run: dotnet restore ./Ab24HybridBalzorApplication/Ab24HybridBalzorApplication.sln
 
     - name: Build
-      run: dotnet build -c Release -f:net7.0-windows10.0.19041.0
-      working-directory: ./Ab24HybridBalzorApplication
+      run: dotnet build ./Ab24HybridBalzorApplication/Ab24HybridBalzorApplication.sln -c Release -f:net7.0-windows10.0.19041.0
 
     - name: Decode Signing Certificate
       run: |
@@ -41,8 +39,7 @@ jobs:
       run: certutil -user -p ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }} -Silent -importpfx cert.pfx NoRoot
 
     - name: Publish
-      run: dotnet publish -c Release -f:net7.0-windows10.0.19041.0 /p:GenerateAppxPackageOnBuild=true /p:AppxPackageSigningEnabled=true /p:PackageCertificateThumbprint=${{ secrets.SIGNING_CERTIFICATE_THUMBPRINT }}
-      working-directory: ./Ab24HybridBalzorApplication
+      run: dotnet publish ./Ab24HybridBalzorApplication/Ab24HybridBalzorApplication.sln -c Release -f:net7.0-windows10.0.19041.0 /p:GenerateAppxPackageOnBuild=true /p:AppxPackageSigningEnabled=true /p:PackageCertificateThumbprint=${{ secrets.SIGNING_CERTIFICATE_THUMBPRINT }}
 
     - name: Extract Version
       id: extractVersion
