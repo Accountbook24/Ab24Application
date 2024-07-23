@@ -19,8 +19,8 @@
         <ApplicationIdGuid>B898A2BC-5FFB-403D-AF0E-826A9456C7BB</ApplicationIdGuid>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>55.2.0.0</ApplicationDisplayVersion>
-        <ApplicationVersion>57</ApplicationVersion> 
+        <ApplicationDisplayVersion>55.4.0.0</ApplicationDisplayVersion>
+        <ApplicationVersion>60</ApplicationVersion> 
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
@@ -37,6 +37,7 @@
         <AppInstallerUri>https://accountbook24.azurewebsites.net/</AppInstallerUri>
         <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
         <PackageCertificateThumbprint>3F8E998F5866CCAF686AFE3354B58E452E8FA522</PackageCertificateThumbprint>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 	
 

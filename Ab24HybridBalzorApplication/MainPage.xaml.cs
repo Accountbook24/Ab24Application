@@ -59,52 +59,45 @@ namespace Ab24HybridBalzorApplication
             }
             else if (json["Type"] == "Share" || json["Type"] == "Print" || json["Type"] == "Launch")
             {
-                string Title = json["Title"];
-                string Text = json["Text"];
-                string SubType = json["SubType"];
-                string Filename = json["Filename"];
-                string FileData = json["Content"];
+                string Title = json.ContainsKey("Title") ? json["Title"] : string.Empty;
+                string SubType = json.ContainsKey("SubType") ? json["SubType"] : string.Empty;
+                string Filename = json.ContainsKey("Filename") ? json["Filename"] : string.Empty;
+                string FileData = json.ContainsKey("Content") ? json["Content"] : string.Empty;
                 string localFilePath = Path.Combine(FileSystem.CacheDirectory, Filename);
-                if (SubType != null && SubType != string.Empty && SubType == "Data")
+                HttpClient client = new HttpClient();
+
+                if (!string.IsNullOrEmpty(SubType) && SubType == "Data")
                 {
                     System.Byte[] byteArray = System.Convert.FromBase64String(FileData);
 
                     await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
-
-
-                        if (json["Type"] == "Share" || json["Type"] == "Launch" || json["Type"] == "Print")
+                        using (var fs = new FileStream(localFilePath, FileMode.CreateNew))
                         {
-                            using (var fs = new FileStream(
-                           localFilePath,
-                           FileMode.CreateNew))
-                            {
-                                fs.Write(byteArray);
-                            }
-                            if (json["Type"] == "Share")
-                            {
-                                await Share.Default.RequestAsync(new ShareFileRequest
-                                {
-                                    Title = Title,
-                                    File = new ShareFile(localFilePath)
-                                });
-                            }
-                            else
-                            {
-                                await Launcher.Default.OpenAsync(new OpenFileRequest(Filename, new ReadOnlyFile(localFilePath)));
-
-                            }
+                            fs.Write(byteArray);
                         }
-                        //else if (json["Type"] == "Print")
-                        //{
 
-                        //    MemoryStream stream = new MemoryStream();
-                        //    stream.Write(byteArray, 0, byteArray.Length);
-                        //    await PrintStream(stream);
-                        //}
+                        if (json["Type"] == "Share")
+                        {
+                            await Share.Default.RequestAsync(new ShareFileRequest
+                            {
+                                Title = Title,
+                                File = new ShareFile(localFilePath)
+                            });
+                        }
+                        else if (json["Type"] == "Launch")
+                        {
+                            await Launcher.Default.OpenAsync(new OpenFileRequest(Filename, new ReadOnlyFile(localFilePath)));
+                        }
+                        else if (json["Type"] == "Print")
+                        {
+                            // Handle Print logic here
+                            // MemoryStream stream = new MemoryStream(byteArray);
+                            // await PrintStream(stream);
+                        }
                     });
                 }
-                else if (SubType != null && SubType != string.Empty && SubType == "URL")
+                else if (!string.IsNullOrEmpty(SubType) && SubType == "URL")
                 {
                     await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
@@ -117,34 +110,33 @@ namespace Ab24HybridBalzorApplication
                                 Title = Title
                             });
                         }
-                        else if (json["Type"] == "Print" || json["Type"] == "Launch")
+                        else if (json["Type"] == "Launch" || json["Type"] == "Print")
                         {
                             var response = await client.GetAsync(FileData);
-                            //using (var fs = new FileStream(
-                            //    localFilePath,
-                            //    FileMode.CreateNew))
-                            //{
-                            //    await response.Content.CopyToAsync(fs);
-                            //    if (json["Type"] == "Print")
-                            //    {
-                            //        await PrintStream(fs);
-                            //    }
-                            //}
-                            //if (json["Type"] == "Launch")
+                            using (var fs = new FileStream(localFilePath, FileMode.CreateNew))
+                            {
+                                await response.Content.CopyToAsync(fs);
+                            }
+
+                            if (json["Type"] == "Launch")
                             {
                                 await Launcher.Default.OpenAsync(new OpenFileRequest(Filename, new ReadOnlyFile(localFilePath)));
                             }
-
+                            else if (json["Type"] == "Print")
+                            {
+                                // Handle Print logic here
+                                // await PrintStream(fs);
+                            }
                         }
                     });
                 }
-                else if (SubType != null && SubType != string.Empty && SubType == "Text")
+                else if (!string.IsNullOrEmpty(SubType) && SubType == "Text")
                 {
                     await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
                         await Share.Default.RequestAsync(new ShareTextRequest
                         {
-                            Text = string.Empty,
+                            Text = json.ContainsKey("Text") ? json["Text"] : string.Empty,
                             Title = Title
                         });
                     });
@@ -152,24 +144,29 @@ namespace Ab24HybridBalzorApplication
             }
             else if (json["Type"] == "Browser")
             {
-                Uri uri = new Uri(json["Url"]);
-                await MainThread.InvokeOnMainThreadAsync(async () =>
+                Uri uri = null;
+                if (json.ContainsKey("Url") && Uri.TryCreate((string)json["Url"], UriKind.Absolute, out uri))
+                {
+                    await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
                         await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
                     });
+                }
             }
             else if (json["Type"] == "WhatsAppShare")
             {
                 await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
-                    bool supportsUri = await Launcher.Default.CanOpenAsync("whatsapp://");
-                    if (supportsUri)
-                        await Launcher.Default.OpenAsync("whatsapp://send?phone=+" + json["Number"] + "&text=" + json["Message"]);
-
-                    else
-                        await App.Current.MainPage.DisplayAlert("Error", "Unable to open WhatsApp.", "OK");
+                    string url = json["Url"];
+                    try
+                    {
+                        await Launcher.Default.OpenAsync(url);
+                    }
+                    catch (Exception ex)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "Unable to open WhatsApp. " + ex.Message, "OK");
+                    }
                 });
-
             }
             else if (json["Type"] == "Dialer")
             {
