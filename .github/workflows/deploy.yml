@@ -25,10 +25,10 @@ jobs:
       run: dotnet workload install maui
 
     - name: Restore
-      run: dotnet restore ./Ab24HybridBlazorApplication.sln
+      run: dotnet restore ./Ab24HybridBalzorApplication/Ab24HybridBlazorApplication.sln
 
     - name: Build
-      run: dotnet build ./Ab24HybridBlazorApplication.sln -c Release -f:net7.0-windows10.0.19041.0
+      run: dotnet build ./Ab24HybridBalzorApplication/Ab24HybridBlazorApplication.sln -c Release -f:net7.0-windows10.0.19041.0
 
     - name: Decode Signing Certificate
       run: |
