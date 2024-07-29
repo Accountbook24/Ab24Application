@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="utf-8">
-    <title>AccountBook24 | A Cloud based ERP &amp; CRM Software for Real Estate Builders &amp; Developers</title>
+    <title>AccountBook24 | Ultimate Cloud ERP &amp; CRM Solution for Real Estate Builders &amp; Developers</title>
     <base href="/">
     <meta name="robots" content="noindex,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -21,8 +21,8 @@
     <meta name="msapplication-TileImage" content="./assets/Favicon/app_favicon/144_144.png">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#4285F4">
-    <script src="assets/jquery.min.js" type="module"></script>
-    <script src="_hwv/HybridWebView.js"></script> 
+    <script src="./assets/jquery.min.js" type="module"></script>
+    <script src="./assets/_hwv/HybridWebView.js"></script> 
     <meta name="facebook-domain-verification" content="j0wt77hfusw1ab8r6l09nr4lmjbd91">
     <meta property="og:image" content="https://api.accountbook24.com/userimages/AbLogo.jpg">
     <meta property="og:image:width" content="1200">
@@ -43,7 +43,6 @@
         function callBackFilePicked(image) {
             window.fileuploadcomponentRef.zone.run(() => { window.fileuploadcomponentRef.filePickedInMobile(image); });
         }
-        
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.getRegistrations().then(function (registrations) {
                 //returns installed service workers
@@ -58,33 +57,7 @@
             CKEDITOR.env.isCompatible = true;
         }
     </script>
-    <!-- <script>
-        window.$ = window.jQuery = require('jquery');
-    </script> -->
-<style>@charset "UTF-8";html{--ion-font-family:var(--ion-default-font)}body{background:var(--ion-background-color)}@supports (padding-top: 20px){html{--ion-safe-area-top:var(--ion-statusbar-padding)}}@supports (padding-top: constant(safe-area-inset-top)){html{--ion-safe-area-top:constant(safe-area-inset-top);--ion-safe-area-bottom:constant(safe-area-inset-bottom);--ion-safe-area-left:constant(safe-area-inset-left);--ion-safe-area-right:constant(safe-area-inset-right)}}@supports (padding-top: env(safe-area-inset-top)){html{--ion-safe-area-top:env(safe-area-inset-top);--ion-safe-area-bottom:env(safe-area-inset-bottom);--ion-safe-area-left:env(safe-area-inset-left);--ion-safe-area-right:env(safe-area-inset-right)}}html{font-family:var(--ion-default-font);font-family:var(--ion-font-family)}:root{--primary:#321fdb;--secondary:#ced2d8;--success:#2eb85c;--info:#39f;--warning:#f9b115;--danger:#e55353;--light:#ebedef;--dark:#636f83;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--breakpoint-xxl:1400px;--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}.c-app{--primary:#321fdb;--secondary:#ced2d8;--success:#2eb85c;--info:#39f;--warning:#f9b115;--danger:#e55353;--light:#ebedef;--dark:#636f83;color:#3c4b64;background-color:#ebedef;--color:#3c4b64}*,:after,:before{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,21,0)}body{margin:0;overflow-x:hidden;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:.75rem;font-weight:400;line-height:1.5;text-align:left;color:#3c4b64;background-color:#ebedef}.c-app{display:flex;flex-direction:row;min-height:100vh}@media all and (-ms-high-contrast: none){html{display:flex;flex-direction:column}}body{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}@media print{*,:after,:before{text-shadow:none!important;box-shadow:none!important}@page{size:a3}body{min-width:992px!important}}@font-face{font-family:OpenSans;src:url(OpenSans.ceb05254cedfa895b512.ttf)}body,html{font-family:OpenSans;font-size:14px}.LaunchLoader{color:#000;color:#eae9fb;background:#321fdb}.LaunchLoader{justify-content:center;align-items:center;height:100vh;flex-direction:row;width:100%;display:flex;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica,sans-serif;font-size:2.5em;text-shadow:2px 2px 10px rgba(0,0,0,.2)}:root{--ion-color-primary:#3880ff;--ion-color-primary-rgb:56,128,255;--ion-color-primary-contrast:#fff;--ion-color-primary-contrast-rgb:255,255,255;--ion-color-primary-shade:#3171e0;--ion-color-primary-tint:#4c8dff;--ion-color-secondary:#3dc2ff;--ion-color-secondary-rgb:61,194,255;--ion-color-secondary-contrast:#fff;--ion-color-secondary-contrast-rgb:255,255,255;--ion-color-secondary-shade:#36abe0;--ion-color-secondary-tint:#50c8ff;--ion-color-tertiary:#5260ff;--ion-color-tertiary-rgb:82,96,255;--ion-color-tertiary-contrast:#fff;--ion-color-tertiary-contrast-rgb:255,255,255;--ion-color-tertiary-shade:#4854e0;--ion-color-tertiary-tint:#6370ff;--ion-color-success:#2dd36f;--ion-color-success-rgb:45,211,111;--ion-color-success-contrast:#fff;--ion-color-success-contrast-rgb:255,255,255;--ion-color-success-shade:#28ba62;--ion-color-success-tint:#42d77d;--ion-color-warning:#ffc409;--ion-color-warning-rgb:255,196,9;--ion-color-warning-contrast:#000;--ion-color-warning-contrast-rgb:0,0,0;--ion-color-warning-shade:#e0ac08;--ion-color-warning-tint:#ffca22;--ion-color-danger:#eb445a;--ion-color-danger-rgb:235,68,90;--ion-color-danger-contrast:#fff;--ion-color-danger-contrast-rgb:255,255,255;--ion-color-danger-shade:#cf3c4f;--ion-color-danger-tint:#ed576b;--ion-color-dark:#222428;--ion-color-dark-rgb:34,36,40;--ion-color-dark-contrast:#fff;--ion-color-dark-contrast-rgb:255,255,255;--ion-color-dark-shade:#1e2023;--ion-color-dark-tint:#383a3e;--ion-color-medium:#92949c;--ion-color-medium-rgb:146,148,156;--ion-color-medium-contrast:#fff;--ion-color-medium-contrast-rgb:255,255,255;--ion-color-medium-shade:#808289;--ion-color-medium-tint:#9d9fa6;--ion-color-light:#f4f5f8;--ion-color-light-rgb:244,245,248;--ion-color-light-contrast:#000;--ion-color-light-contrast-rgb:0,0,0;--ion-color-light-shade:#d7d8da;--ion-color-light-tint:#f5f6f9}*{box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}</style><link rel="stylesheet" href="styles.a30909980b53c0147d84.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.a30909980b53c0147d84.css"></noscript></head>
-
-<!-- <body id="cont" class="c-app">
-    <style>
-        body {
-            background: white;
-            margin: 0;
-            color: black;
-            padding: 0;
-        }
-    </style>
-    <div class="LaunchLoader">
-        <div class="mx-auto ab24Icon"><br>
-            <br>
-            <br>
-            <span style="text-align: center;">LOADING</span>
-            <span class="d">.</span>
-            <span class="d d-2">.</span>
-            <span class="d d-3">.</span>
-        </div>
-    </div>
-    <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body> -->
-
+<style>@charset "UTF-8";html{--ion-font-family:var(--ion-default-font)}body{background:var(--ion-background-color)}@supports (padding-top: 20px){html{--ion-safe-area-top:var(--ion-statusbar-padding)}}@supports (padding-top: constant(safe-area-inset-top)){html{--ion-safe-area-top:constant(safe-area-inset-top);--ion-safe-area-bottom:constant(safe-area-inset-bottom);--ion-safe-area-left:constant(safe-area-inset-left);--ion-safe-area-right:constant(safe-area-inset-right)}}@supports (padding-top: env(safe-area-inset-top)){html{--ion-safe-area-top:env(safe-area-inset-top);--ion-safe-area-bottom:env(safe-area-inset-bottom);--ion-safe-area-left:env(safe-area-inset-left);--ion-safe-area-right:env(safe-area-inset-right)}}html{font-family:var(--ion-default-font);font-family:var(--ion-font-family)}:root{--primary:#321fdb;--secondary:#ced2d8;--success:#2eb85c;--info:#39f;--warning:#f9b115;--danger:#e55353;--light:#ebedef;--dark:#636f83;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--breakpoint-xxl:1400px;--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}.c-app{--primary:#321fdb;--secondary:#ced2d8;--success:#2eb85c;--info:#39f;--warning:#f9b115;--danger:#e55353;--light:#ebedef;--dark:#636f83;color:#3c4b64;background-color:#ebedef;--color:#3c4b64}*,:after,:before{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,21,0)}body{margin:0;overflow-x:hidden;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:.75rem;font-weight:400;line-height:1.5;text-align:left;color:#3c4b64;background-color:#ebedef}.c-app{display:flex;flex-direction:row;min-height:100vh}@media all and (-ms-high-contrast: none){html{display:flex;flex-direction:column}}body{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}@media print{*,:after,:before{text-shadow:none!important;box-shadow:none!important}@page{size:a3}body{min-width:992px!important}}@font-face{font-family:OpenSans;src:url(OpenSans.ceb05254cedfa895b512.ttf)}body,html{font-family:OpenSans;font-size:14px}.LaunchLoader{color:#000;color:#eae9fb;background:#321fdb}.LaunchLoader{justify-content:center;align-items:center;height:100vh;flex-direction:row;width:100%;display:flex;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica,sans-serif;font-size:2.5em;text-shadow:2px 2px 10px rgba(0,0,0,.2)}:root{--ion-color-primary:#3880ff;--ion-color-primary-rgb:56,128,255;--ion-color-primary-contrast:#fff;--ion-color-primary-contrast-rgb:255,255,255;--ion-color-primary-shade:#3171e0;--ion-color-primary-tint:#4c8dff;--ion-color-secondary:#3dc2ff;--ion-color-secondary-rgb:61,194,255;--ion-color-secondary-contrast:#fff;--ion-color-secondary-contrast-rgb:255,255,255;--ion-color-secondary-shade:#36abe0;--ion-color-secondary-tint:#50c8ff;--ion-color-tertiary:#5260ff;--ion-color-tertiary-rgb:82,96,255;--ion-color-tertiary-contrast:#fff;--ion-color-tertiary-contrast-rgb:255,255,255;--ion-color-tertiary-shade:#4854e0;--ion-color-tertiary-tint:#6370ff;--ion-color-success:#2dd36f;--ion-color-success-rgb:45,211,111;--ion-color-success-contrast:#fff;--ion-color-success-contrast-rgb:255,255,255;--ion-color-success-shade:#28ba62;--ion-color-success-tint:#42d77d;--ion-color-warning:#ffc409;--ion-color-warning-rgb:255,196,9;--ion-color-warning-contrast:#000;--ion-color-warning-contrast-rgb:0,0,0;--ion-color-warning-shade:#e0ac08;--ion-color-warning-tint:#ffca22;--ion-color-danger:#eb445a;--ion-color-danger-rgb:235,68,90;--ion-color-danger-contrast:#fff;--ion-color-danger-contrast-rgb:255,255,255;--ion-color-danger-shade:#cf3c4f;--ion-color-danger-tint:#ed576b;--ion-color-dark:#222428;--ion-color-dark-rgb:34,36,40;--ion-color-dark-contrast:#fff;--ion-color-dark-contrast-rgb:255,255,255;--ion-color-dark-shade:#1e2023;--ion-color-dark-tint:#383a3e;--ion-color-medium:#92949c;--ion-color-medium-rgb:146,148,156;--ion-color-medium-contrast:#fff;--ion-color-medium-contrast-rgb:255,255,255;--ion-color-medium-shade:#808289;--ion-color-medium-tint:#9d9fa6;--ion-color-light:#f4f5f8;--ion-color-light-rgb:244,245,248;--ion-color-light-contrast:#000;--ion-color-light-contrast-rgb:0,0,0;--ion-color-light-shade:#d7d8da;--ion-color-light-tint:#f5f6f9}*{box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}</style><link rel="stylesheet" href="styles.4b96c13a76304a710ee2.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.4b96c13a76304a710ee2.css"></noscript></head>
 <body id="cont" class="c-app">
     <style>
         body {
@@ -100,17 +73,6 @@
         <span class="d d-2">.</span>
         <span class="d d-3">.</span>
     </div>
-    <!-- <div class="LaunchLoaderMobile">
-        LOADING
-        <span class="d">.</span>
-        <span class="d d-2">.</span>
-        <span class="d d-3">.</span>
-    </div> -->
     <noscript>Please enable JavaScript to continue using this application.</noscript>
-<script src="runtime-es2015.8ece2cce01f7dbb2b8f9.js" type="module"></script><script src="runtime-es5.8ece2cce01f7dbb2b8f9.js" nomodule defer></script><script src="polyfills-es5.1a53904a73d2b1b58c14.js" nomodule defer></script><script src="polyfills-es2015.d96aa3efc6b497c96836.js" type="module"></script><script src="scripts.3fab0fdde075ca436fee.js" defer></script><script src="main-es2015.a44ac449f08a844a60fe.js" type="module"></script><script src="main-es5.a44ac449f08a844a60fe.js" nomodule defer></script>
-
-
-</body><!-- <script async src="./assets/ckeditor/ckeditor.js" type="text/javascript"></script>
-<script type="text/javascript" src="./assets/grapes.min.js"></script>
-<script type="text/javascript" src="./assets/grapesjs-preset-newsletter.min.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script> --></html>
+<script src="runtime-es2015.0af41801e0f4474036eb.js" type="module"></script><script src="runtime-es5.0af41801e0f4474036eb.js" nomodule defer></script><script src="polyfills-es5.1a53904a73d2b1b58c14.js" nomodule defer></script><script src="polyfills-es2015.d96aa3efc6b497c96836.js" type="module"></script><script src="scripts.3fab0fdde075ca436fee.js" defer></script><script src="main-es2015.48309e3563df95d7ff37.js" type="module"></script><script src="main-es5.48309e3563df95d7ff37.js" nomodule defer></script>
+</body></html>
