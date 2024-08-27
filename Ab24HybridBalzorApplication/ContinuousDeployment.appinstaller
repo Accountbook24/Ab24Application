@@ -5,10 +5,12 @@
 	Uri="https://github.com/Accountbook24/Ab24Application/releases/latest/download/ContinuousDeployment.appinstaller">
 	<MainPackage Name="B898A2BC-5FFB-403D-AF0E-826A9456C7BB" 
 	 			 Publisher="CN=PREMIUM"
-	 			 Version="55.4.6.0"
+	 			 Version="55.5.0.0"
 	 			 ProcessorArchitecture="x64"
 	 			 Uri="https://github.com/Accountbook24/Ab24Application/releases/latest/download/AutoUpdate.msix" />
 	<UpdateSettings>
-		<OnLaunch HoursBetweenUpdateChecks="0" />
+		<OnLaunch HoursBetweenUpdateChecks="3" />
+		<AutomaticBackgroundTask />
+		<ForceUpdateFromAnyVersion>true</ForceUpdateFromAnyVersion>
 	</UpdateSettings> 
 </AppInstaller>
