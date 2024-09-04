@@ -4,6 +4,10 @@
         <!--<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
         <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>-->
 		<TargetFrameworks>net7.0-android;net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetSdkVersion>34</TargetSdkVersion>
+		<!-- Target Android 14 (API Level 34) -->
+		<MinSdkVersion>24</MinSdkVersion>
+		<!-- Minimum SDK Version -->
 		<OutputType>Exe</OutputType>
         <RootNamespace>Ab24HybridBalzorApplication</RootNamespace>
         <UseMaui>true</UseMaui>
@@ -19,13 +23,13 @@
         <ApplicationIdGuid>B898A2BC-5FFB-403D-AF0E-826A9456C7BB</ApplicationIdGuid>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>55.5.0.0</ApplicationDisplayVersion>
-        <ApplicationVersion>64</ApplicationVersion> 
+        <ApplicationDisplayVersion>55.6.0.0</ApplicationDisplayVersion>
+        <ApplicationVersion>66</ApplicationVersion> 
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
-        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
         <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
