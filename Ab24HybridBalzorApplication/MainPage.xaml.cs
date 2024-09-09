@@ -7,6 +7,7 @@ using Microsoft.Maui.ApplicationModel;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Collections;
 
 
 
@@ -66,25 +67,34 @@ namespace Ab24HybridBalzorApplication
                 string localFilePath = Path.Combine(FileSystem.CacheDirectory, Filename);
                 HttpClient client = new HttpClient();
 
+                System.Byte[] byteArray = null;
+
+                if (IsBase64String(FileData))
+                {
+                    byteArray = System.Convert.FromBase64String(FileData);
+                }
+
                 if (!string.IsNullOrEmpty(SubType) && SubType == "Data")
                 {
-                    System.Byte[] byteArray = System.Convert.FromBase64String(FileData);
+
 
                     await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
-                        using (var fs = new FileStream(localFilePath, FileMode.CreateNew))
-                        {
-                            fs.Write(byteArray);
-                        }
+                        //using (var fs = new FileStream(localFilePath, FileMode.CreateNew))
+                        //{
+                        //    fs.Write(byteArray);
+                        //}
 
                         if (json["Type"] == "Share")
                         {
-                            await Share.Default.RequestAsync(new ShareFileRequest
+                            await Share.Default.RequestAsync(new ShareTextRequest
                             {
-                                Title = Title,
-                                File = new ShareFile(localFilePath)
+                                Text = string.Empty,
+                                Uri = FileData,
+                                Title = Title
                             });
                         }
+
                         else if (json["Type"] == "Launch")
                         {
                             await Launcher.Default.OpenAsync(new OpenFileRequest(Filename, new ReadOnlyFile(localFilePath)));
@@ -92,8 +102,8 @@ namespace Ab24HybridBalzorApplication
                         else if (json["Type"] == "Print")
                         {
                             // Handle Print logic here
-                            // MemoryStream stream = new MemoryStream(byteArray);
-                            // await PrintStream(stream);
+                            MemoryStream stream = new MemoryStream(byteArray);
+                            await PrintStream(stream);
                         }
                     });
                 }
@@ -124,8 +134,9 @@ namespace Ab24HybridBalzorApplication
                             }
                             else if (json["Type"] == "Print")
                             {
-                                // Handle Print logic here
-                                // await PrintStream(fs);
+                                //Handle Print logic here
+                                MemoryStream stream = new MemoryStream(byteArray);
+                                await PrintStream(stream);
                             }
                         }
                     });
@@ -186,7 +197,7 @@ namespace Ab24HybridBalzorApplication
             }
         }
 
-            private async Task PrintStream(Stream stream)
+        private async Task PrintStream(Stream stream)
         {
             PrintService printService = new PrintService();
 
@@ -201,6 +212,29 @@ namespace Ab24HybridBalzorApplication
                 await printService.PrintFile(stream, "pdfTestFile.pdf", null);
 
 #endif
+            }
+        }
+
+
+        public static bool IsBase64String(string base64)
+        {
+            // Remove any white spaces and check if the string is null or empty.
+            if (string.IsNullOrEmpty(base64))
+                return false;
+
+            // Check if the string's length is a multiple of 4.
+            if (base64.Length % 4 != 0)
+                return false;
+
+            try
+            {
+                // Attempt to convert the string from Base64. If it fails, it's not a valid Base64 string.
+                Convert.FromBase64String(base64);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
             }
         }
     }
@@ -222,4 +256,6 @@ namespace Ab24HybridBalzorApplication
             });
         }
     }
+  
+
 }
