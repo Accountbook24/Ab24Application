@@ -23,8 +23,8 @@
         <ApplicationIdGuid>B898A2BC-5FFB-403D-AF0E-826A9456C7BB</ApplicationIdGuid>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>55.6.1.0</ApplicationDisplayVersion>
-        <ApplicationVersion>67</ApplicationVersion> 
+        <ApplicationDisplayVersion>55.6.2.0</ApplicationDisplayVersion>
+        <ApplicationVersion>68</ApplicationVersion> 
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
