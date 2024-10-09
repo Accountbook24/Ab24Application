@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Collections;
+using Microsoft.Maui.Controls.PlatformConfiguration;
 
 
 
@@ -17,7 +18,7 @@ namespace Ab24HybridBalzorApplication
     {
         static readonly HttpClient client = new HttpClient();
         public MainPage()
-        {
+         {
             InitializeComponent();
 #if DEBUG
             myHybridWebView.EnableWebDevTools = true;
@@ -195,7 +196,22 @@ namespace Ab24HybridBalzorApplication
                     Console.WriteLine("Required permissions not granted.");
                 }
             }
+            else if (json["Type"] == "LeadNotification")
+            {
+                // Extract relevant lead information from the JSON
+                string leadName = json["LeadData"]["SrcNm"];
+                string customerFirstName = json["LeadData"]["CusFN"];
+                string customerContact = json["LeadData"]["CusCNo"];
+
+                // Construct a notification message using the lead information
+                string message = $"Lead from: {leadName}\nCustomer: {customerFirstName}\nContact: {customerContact}";
+
+                // Send the notification to the Android notification drawer
+                //SendNotification("New Lead Received", message);
+            }
         }
+
+       
 
         private async Task PrintStream(Stream stream)
         {
